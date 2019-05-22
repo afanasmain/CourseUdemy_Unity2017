@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MoveSphere : MonoBehaviour {
+
+    public Transform sphereTransform;
+    public Vector3[] checkPoint = {
+        new Vector3(-4.8f, 2.5f, 0f),
+        new Vector3(0.0f, 0.0f , 0.0f),
+        new Vector3(2.0f, -1.0f, 0.0f),
+        new Vector3(-3.5f, 2.0f, 0.0f)
+    };
+    public int i = 0;
+    public float speed = 2.0f;
+
+	void Update () {
+        movingSphere();        
+	}
+
+    void movingSphere()
+    {
+        if (i < checkPoint.Length)
+        {
+            if (sphereTransform.position == checkPoint[i]) i++;
+            sphereTransform.position = Vector3.MoveTowards(sphereTransform.position, checkPoint[i], Time.deltaTime * speed);
+        }
+        else return;
+    }
+}
